@@ -37,16 +37,18 @@ class Fligth {
         this._movements(event.keyCode);
       }
         
-      
+  
     });
     document.addEventListener("keyup", (event) => {
+      if(this._inCanvas()){
       this.vx = 0;
       this.vy = 0;
+      }
     });
   }
 
   _movements(keyCode) {
-    switch (event.keyCode) {
+    switch (keyCode) {
       case RIGHT:
         this.vx += 5;
         break;
@@ -62,12 +64,13 @@ class Fligth {
     }
   }
   _inCanvas(){
-    console.log(this.x)
+    
     if(this.x >= 0){
       return true
 
     }else{
       this.x = 0
+      this.vx = 0
     }
   }
   
