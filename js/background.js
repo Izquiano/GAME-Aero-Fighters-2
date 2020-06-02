@@ -12,7 +12,7 @@ class Background {
         
 
         this._img = new Image()
-        this._img.src = '../img/background.png'
+        this._img.src = 'img/background.png'
 
 
         
