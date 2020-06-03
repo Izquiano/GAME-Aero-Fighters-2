@@ -6,52 +6,32 @@ class FortEnemy {
     this.y = -200;
     this.w = 150;
     this.h = 200;
-    this.vy = 3;
+    this.vy = 1;
+    
+    this.gun = [ new FortGun(this._ctx, this.x, this.y, this.vy) ]
+    
 
     this._img = new Image();
     this._img.src = "img/fort.png";
 
-    this.gunW = 50;
-    this.gunH = 50;
-    this._gun1 = new Image();
-    this._gun1.src = "img/gun1.png";
-
-    this._gun1.frameIndex = 4;
-    this._gun1.frames = 9;
-    this.animationCount = 0;
+   
   }
 
   draw() {
     this._ctx.drawImage(this._img, this.x, this.y, this.w, this.h);
 
-    this._ctx.drawImage(
-      this._gun1,
-      this.gunW * this._gun1.frameIndex,
-      0,
-      this._gun1.width / this._gun1.frames,
-      this._gun1.height,
-      this.x + this.w / 2 - this.gunW / 2,
-      this.y + 120,
-      this.gunW,
-      this.gunH
-    );
+    this.gun.forEach(e => {
+      
+      e.draw()}
+      )
+    
   }
 
   move() {
     this.y += this.vy;
+    this.gun.forEach(e => e.move())
 
-    if (this.animationCount++ > 30 && (this._gun1.frameIndex > 0 && this._gun1.frameIndex < 8)) {
-      if (this.x > this._ctx.canvas.width / 2) {
-        
-          this._gun1.frameIndex -= 1;
-          this.animationCount = 0;
-        
-        
-      } else {
-        this._gun1.frameIndex += 1;
-        this.animationCount = 0;
-      }
-    }
+    
   }
 
   isVisible() {

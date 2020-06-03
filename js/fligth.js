@@ -31,13 +31,14 @@ class Fligth {
 
 
     this.audioShot = new Audio ('sounds/Gunshot2.mp3')
-    this.audio = new Audio ('sounds/airplane+seaplane-3.mp3')
-    this.audio.loop = true;
+    // this.audio = new Audio ('sounds/airplane+seaplane-3.mp3')
+    // this.audio.loop = true;
     // this.audio.play()
   }
 
   draw() {
     this.bullets.forEach((el) => el.draw());
+    this.bullets = this.bullets.filter(element => element.y > 0); 
     this._ctx.drawImage(
       this._img,
       (this._img.frameIndex * this._img.width) / this._img.frames,
@@ -58,6 +59,20 @@ class Fligth {
 
     this._animation();
     this.bullets.forEach((el) => el.move());
+
+
+    if (this.y + this.h >= this._ctx.canvas.height) {
+      this.y = this._ctx.canvas.height - this.h
+    }
+    if (this.x - this.w / 2 <= 0) {
+      this.x = this.w / 2
+    }
+    if (this.y <= 0) {
+      this.y = 0
+    }
+    if (this.x + this.w / 2 >= this._ctx.canvas.width) {
+      this.x = this._ctx.canvas.width - this.w / 2
+    }
   }
 
   _setListeners() {
@@ -100,7 +115,6 @@ class Fligth {
         break;
     }
   }
-
   _inCanvas() {
     if (this.x - this.w / 2 <= 0) {
       this.x = this.w / 2;
@@ -108,15 +122,13 @@ class Fligth {
     } else {
     }
   }
+ 
   _animation() {
     if (this._turnRight === true && this._img.frameIndex < this._img.frames) {
       this._img.frameIndex = 3;
 
       this._img.src = "img/fligth-TurningR.png";
-    } else if (
-      this._turnLeft === true &&
-      this._img.frameIndex < this._img.frames
-    ) {
+    } else if ( this._turnLeft === true && this._img.frameIndex < this._img.frames ) {
       this._img.frameIndex = 3;
       this._img.src = "img/fligth-TurningL.png";
     } else {

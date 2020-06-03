@@ -1,4 +1,4 @@
-window.onload = () => {
+// window.onload = () => {
   const canvas = document.getElementById("canvas");
   const ctx = canvas.getContext("2d");
   // function resizeCanvas() {
@@ -12,4 +12,7 @@ window.onload = () => {
 
 //   ctx.fillStyle = "green";
 //   ctx.fillRect(10, 10, 100, 100);
-};
+// };
+
+
+
