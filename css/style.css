@@ -23,10 +23,21 @@
   position: fixed;
   top: 0;
   width: 100%;
-  height: 50px;
-  background-color: rgba(100, 100, 100, 0.8);
+
   z-index: 20;
+  display: flex;
+  justify-content: space-around;
+  font-size: 20px;
 }
+#util-nav div{
+  padding: 20px;
+}
+#util-nav div,
+#util-nav > div > span {
+  color: white;
+  text-shadow: 2px 2px 0px black;
+}
+
 
 #canvas {
   width: 100vw;

@@ -1,12 +1,12 @@
 class FortEnemy {
   constructor(ctx) {
     this._ctx = ctx;
-    this.x = Math.random() * this._ctx.canvas.width;
+    this.x = Math.random() * this._ctx.canvas.width ;
 
     this.y = -200;
     this.w = 150;
     this.h = 200;
-    this.vy = 1;
+    this.vy = 3;
     
     this.gun = [ new FortGun(this._ctx, this.x, this.y, this.vy) ]
     

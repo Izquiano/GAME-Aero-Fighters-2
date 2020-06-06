@@ -4,3 +4,4 @@ RIGHT = 39
 LEFT = 37
 SPACE = 32
 SCORE = document.getElementById('score')
+HEALTH = document.getElementById('health')

@@ -146,4 +146,7 @@ class Fligth {
     this.audioShot.play()
     this.bullets.push(new Bullet(this._ctx, this.x, this.y));
   }
+  _boom(){
+    this._img.src = ""
+  }
 }
