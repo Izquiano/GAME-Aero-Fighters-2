@@ -18,7 +18,7 @@ class fligthEnemie {
 
     this._img = new Image();
     let ramdom = Math.floor(Math.random() * 3)
-    this.enemiesImg = ["img/enemyFligth.png", "img/enemyFligth2.png", "img/enemyFligth2.png" ]
+    this.enemiesImg = ["img/enemyFligth.png", "img/enemyFligth2.png", "img/enemyFligth3.png" ]
     this._img.src = this.enemiesImg[ramdom];
     
   }

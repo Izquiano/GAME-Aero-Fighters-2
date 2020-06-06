@@ -35,7 +35,7 @@ class Game {
   }
 
   _addFlightEnemy() {
-    if (this.tick > 450 && this.tick < 452) {
+    if (this.tick % 100 == 0) {
       this._flightsEnemies.push(new fligthEnemie(this._ctx));
       console.log(this._flightsEnemies);
     }
@@ -111,9 +111,10 @@ class Game {
         fligtEnemy.x < myFlight.x + myFlight.w / 2 &&
         fligtEnemy.x + fligtEnemy.w > myFlight.x - myFlight.w / 2
       ) {
-        this.health -= 10;
+        this.health = 0;
         this._flightsEnemies = this._flightsEnemies.filter((el) => el != fligtEnemy);
         // Añadir sonido "tocado"
+        // Boom!!!!
       }
     });
     // Check collitions => myFlight to enemyFlightsBullets
@@ -132,11 +133,35 @@ class Game {
       })
       
     });
+     // Check collitions => myBullets to enemyFlights
+     flightsEnemies.forEach((fligtEnemy) => {
+      myFlight.bullets.forEach((bullet) => {
+        if (
+          fligtEnemy.y < bullet.y + bullet.h &&
+          fligtEnemy.y + fligtEnemy.h > bullet.y &&
+          fligtEnemy.x < bullet.x + bullet.w  &&
+          fligtEnemy.x + fligtEnemy.w > bullet.x - bullet.w
+        ){
+          this.health += 20;
+          this._flightsEnemies = this._flightsEnemies.filter((el) => el != fligtEnemy);
+          myFlight.bullets = myFlight.bullets.filter( (el) => el != bullet)
+        // Añadir sonido "tocado"
+        // Boom!!!!
+        }
+
+      })
+      
+        
+      
+      
+    });
   }
   _drawScore() {
     SCORE.innerHTML = `${this.score}`;
   }
   _drawHealth() {
     HEALTH.innerHTML = `${this.health}`;
+    let myHealth = document.querySelector('#healthBar > div')
+    myHealth.style.width = this.health + '%'
   }
 }

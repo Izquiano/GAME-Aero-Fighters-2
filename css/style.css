@@ -29,10 +29,10 @@
   justify-content: space-around;
   font-size: 20px;
 }
-#util-nav div{
+#util-nav > div{
   padding: 20px;
 }
-#util-nav div,
+#util-nav  div,
 #util-nav > div > span {
   color: white;
   text-shadow: 2px 2px 0px black;
@@ -42,5 +42,21 @@
 #canvas {
   width: 100vw;
   height: 100vh;
-  border: 1px dotted red;
+  
+}
+#healthBar{
+  margin-left: 10px;
+  opacity: 0.7;
+  width: 200px;
+  background-color: red;
+  overflow: hidden;
+  height: 15px;
+  border-radius: 3px;
+  display: inline-block;
+  border: 1px solid white
+}
+#healthBar > div{
+  width: 100%;
+  background-color: green;
+  height: 100%;
 }
