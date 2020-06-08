@@ -8,13 +8,33 @@ class fortBullet {
     this.h = 10;
     this._img = new Image();
     this._img.src = "img/fortshoot.png";
+    this._img.frames = 1;
+    this._img.frameIndex = 0;
+
   }
 
   draw() {
-    this._ctx.drawImage(this._img, this.x, this.y, this.w, this.h);
+    this._ctx.drawImage(
+      this._img,
+      (this._img.frameIndex * this._img.width) / this._img.frames,
+      0,
+      this._img.width / this._img.frames, 
+      this._img.height,
+      this.x,
+      this.y,
+      this.w,
+      this.h
+    );
   }
 
   move() {
+    this.animation()
     this.y += this.vy;
+  }
+  animation() {
+    this._img.frameIndex++;
+    if (this._img.frameIndex >= this._img.frames) {
+      this._img.frameIndex = 0;
+    }
   }
 }

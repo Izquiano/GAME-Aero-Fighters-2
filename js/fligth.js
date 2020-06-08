@@ -13,12 +13,14 @@ class Fligth {
     this.ax = 0;
     this.ay = 0;
 
-    this.frames = 4;
+    
 
     this._img = new Image();
     this._img.frames = 4;
     this._img.frameIndex = 0;
     this._img.src = "img/fligth-sprit.png";
+    
+    
 
     this._aniamationCounter = 0;
 
@@ -31,19 +33,23 @@ class Fligth {
 
 
     this.audioShot = new Audio ('sounds/Gunshot2.mp3')
-    // this.audio = new Audio ('sounds/airplane+seaplane-3.mp3')
-    // this.audio.loop = true;
-    // this.audio.play()
+    this.audio = new Audio ('sounds/airplane+seaplane-2.mp3')
+    this.audio.loop = true;
+    this.audio.play()
   }
+  
+ 
 
   draw() {
     this.bullets.forEach((el) => el.draw());
     this.bullets = this.bullets.filter(element => element.y > 0); 
+    
+    
     this._ctx.drawImage(
       this._img,
       (this._img.frameIndex * this._img.width) / this._img.frames,
       0,
-      this._img.width / this._img.frames,
+      this._img.width / this._img.frames, 
       this._img.height,
       this.x - this.w / 2,
       this.y,
@@ -146,7 +152,5 @@ class Fligth {
     this.audioShot.play()
     this.bullets.push(new Bullet(this._ctx, this.x, this.y));
   }
-  _boom(){
-    this._img.src = ""
-  }
+ 
 }
