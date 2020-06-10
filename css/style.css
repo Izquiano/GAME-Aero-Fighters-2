@@ -20,13 +20,23 @@
 }
 body{
   background-color: black;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 100vh;
+  background-image: url("../img/World-War-II.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  
+
 }
 
 #util-nav {
   position: absolute;
   top: 0;
   width: 100%;
-
+  max-width: 1000px;
   z-index: 20;
   display: flex;
   justify-content: space-around;
@@ -41,10 +51,12 @@ body{
   text-shadow: 2px 2px 0px black;
 }
 #main{
-  width: 1000px;
-  height: 800px;
+  /* width: 1000px;
+  height: 800px; */
   position: relative;
   margin: auto auto;
+  display: flex;
+  flex-direction: column;
 }
 
 /* #canvas {
@@ -67,4 +79,30 @@ body{
   width: 100%;
   background-color: green;
   height: 100%;
+}
+#logoGame{
+  width: 200px
+}
+input#name{
+  height: 40px;
+  padding: 10px;
+  margin: 20px 0;
+  background-color: rgba(255,255, 255, .5);
+  border: none
+}
+
+input#name::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: white;
+  opacity: 1; /* Firefox */
+}
+#start{
+  background-color: white;
+  padding: 10px 20px;
+  color: black;
+  text-align: center;
+  cursor: pointer
+}
+
+#lives img{
+  width: 30px;
 }

@@ -6,3 +6,4 @@ SPACE = 32
 SCORE = document.getElementById('score')
 HEALTH = document.getElementById('health')
 MYHEALTH = document.querySelector("#healthBar > div")
+LIVES = document.getElementById('lives')

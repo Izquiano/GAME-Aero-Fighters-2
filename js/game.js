@@ -1,18 +1,20 @@
 class Game {
   constructor(ctx) {
-    this._ctx = ctx;
-    this._intervalId = null;
-    this._bg = new Background(ctx);
-    this._fligth = new Fligth(ctx);
+    this._ctx = ctx
+    this._intervalId = null
+    this._bg = new Background(ctx)
+    this._fligth = new Fligth(ctx)
     this.tick = 0;
-    this._fortsEnemy = [];
-    this._flightsEnemies = [];
+    this._fortsEnemy = []
+    this._flightsEnemies = []
     this.score = 0;
     this.health = 100;
     this.boom = false;
-    this.boomArray = [];
+    this.boomArray = []
     this.giftsArray = []
     this.heartsArray = []
+    this.lives = ['live', 'life', 'life']
+    this._drawLives() 
 
     this.audioBoom = new Audio("sounds/boom.mp3");
     this.fortBoom = new Audio("sounds/fortBoom.mp3");
@@ -52,7 +54,7 @@ class Game {
   _addFlightEnemy() {
     if (this.tick % 100 == 0) {
       this._flightsEnemies.push(new FligthEnemie(this._ctx));
-    }
+    } 
   }
   _clearFligthEnemy() {
     this._flightsEnemies = this._flightsEnemies.filter((f) => f.isVisible());
@@ -95,6 +97,7 @@ class Game {
     this.boomArray.forEach((o) => o.draw());
     this._drawScore();
     this._drawHealth();
+    
   }
   _move() {
     this._bg.move();
@@ -117,7 +120,7 @@ class Game {
             bullet.x - bullet.w / 2 < arrayFortsEnemy[i].gun[j].x + 100
           ) {
             this.fortBoom.play();
-            this.boomArray.push(new Boom(arrayFortsEnemy[i].gun[j]));
+            this.boomArray.push(new Boom(arrayFortsEnemy[i]));
 
             myFlight.bullets = myFlight.bullets.filter(
               (element) => element != bullet
@@ -159,6 +162,12 @@ class Game {
       ) {
         if (!this.boom) {
           this.health = 0;
+          this.boomArray.push(new Boom(fligtEnemy)); 
+          this.boomArray.push(new Boom(myFlight));
+          this.lives.pop()
+          this.audioBoom.play()
+          LIVES.innerHTML = ''
+          this._drawLives()
           this._flightsEnemies = this._flightsEnemies.filter(
             (el) => el != fligtEnemy
           );
@@ -243,9 +252,47 @@ class Game {
     HEALTH.innerHTML = `${this.health}`;
     MYHEALTH.style.width = this.health + "%";
   }
+  _drawLives() {
+    if(this.lives.length > 0 ){
+      this.lives.forEach( (live) => {
+        let img = document.createElement('img')
+        img.setAttribute('src', "../img/favicon.png")
+        LIVES.appendChild (img) 
+      })
+    }else{
+      this._gameOver()
+    }
+    
+
+    
+
+  }
+    
+  
   _clearBoom() {
     if (this.boomArray.length > 3) {
       this.boomArray.shift();
     }
+  }
+  _gameOver(){
+    clearInterval(this._intervalId)
+    this._fligth.audio.pause()
+
+    
+  
+      this._ctx.font = "40px Comic Sans MS";
+      this._ctx.textAlign = "center";
+      this._ctx.fillText(
+        "GAME OVER",
+        this._ctx.canvas.width / 2,
+        this._ctx.canvas.height / 2
+      );
+    
+
+
+
+  }
+  _finalExplosion(){
+
   }
 }
