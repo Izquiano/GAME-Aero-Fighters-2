@@ -15,12 +15,14 @@ class Game {
     this.heartsArray = []
     this.lives = ['live', 'life', 'life']
     this._drawLives() 
+    
 
     this.audioBoom = new Audio("sounds/boom.mp3");
     this.fortBoom = new Audio("sounds/fortBoom.mp3");
     this.shootMe = new Audio("sounds/Shootme.mp3");
     this.heartBoing = new Audio("sounds/heart.mp3");
     this.moneyBoing = new Audio("sounds/money.mp3");
+    
     // this.audio.loop = true
   }
   start() {
@@ -128,7 +130,13 @@ class Game {
             arrayFortsEnemy[i].gun = arrayFortsEnemy[i].gun.filter(
               (e) => e != e
             );
-            this.score += 25;
+            this.score += 50;
+            if(this.score % 1000 === 0){
+              this.lives.push('life')
+              LIVES.innerHTML = ''
+              this._drawLives()
+              
+            }
           }
         }
       }
@@ -146,7 +154,14 @@ class Game {
           ) {
             this.shootMe.play();
             this.boomArray.push(new Boom(bullet));
-            this.score += 30;
+            this.health -= 20;
+            if(this.health <= 0){
+              this.lives.pop('life')
+              this.health = 100
+              LIVES.innerHTML = ''
+              this._drawLives()
+              
+            }
             gun.bullets = gun.bullets.filter((el) => el != bullet);
           }
         })
@@ -190,6 +205,13 @@ class Game {
           this.shootMe.pause();
           this.shootMe.play();
           this.health -= 10;
+          if(this.health <= 0){
+            this.lives.pop('life')
+            this.health = 100
+            LIVES.innerHTML = ''
+            this._drawLives()
+            
+          }
           fligtEnemy.bullets = fligtEnemy.bullets.filter((el) => el != bullet);
         }
       });
@@ -209,7 +231,13 @@ class Game {
           this._flightsEnemies = this._flightsEnemies.filter(
             (el) => el != fligtEnemy
           );
-          this.score += 20;
+          this.score += 50;
+          if(this.score % 1000 === 0){
+            this.lives.push('life')
+            LIVES.innerHTML = ''
+            this._drawLives()
+            
+          }
           this.boomArray.push(new Boom(fligtEnemy));
         }
       });
@@ -224,7 +252,13 @@ class Game {
           gift.x + gift.w > myFlight.x - myFlight.w / 2
         ) {
           this.moneyBoing.play()
-          this.score += 100;
+          this.score += 50;
+          if(this.score % 1000 === 0){
+            this.lives.push('life')
+            LIVES.innerHTML = ''
+            this._drawLives()
+            
+          }
           this.giftsArray = this.giftsArray.filter((el) => el != gift);
         }
       
@@ -256,7 +290,7 @@ class Game {
     if(this.lives.length > 0 ){
       this.lives.forEach( (live) => {
         let img = document.createElement('img')
-        img.setAttribute('src', "../img/favicon.png")
+        img.setAttribute('src', "img/favicon.png")
         LIVES.appendChild (img) 
       })
     }else{
@@ -277,22 +311,13 @@ class Game {
   _gameOver(){
     clearInterval(this._intervalId)
     this._fligth.audio.pause()
-
-    
+    this._finalExplosion = new finalExplosion(this._ctx)
+    this._finalExplosion.start()
   
-      this._ctx.font = "40px Comic Sans MS";
-      this._ctx.textAlign = "center";
-      this._ctx.fillText(
-        "GAME OVER",
-        this._ctx.canvas.width / 2,
-        this._ctx.canvas.height / 2
-      );
-    
+      
 
 
 
   }
-  _finalExplosion(){
-
-  }
+ 
 }

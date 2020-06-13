@@ -39,16 +39,16 @@ body{
   max-width: 1000px;
   z-index: 20;
   display: flex;
-  justify-content: space-around;
-  font-size: 20px;
+  justify-content: space-between  ;
+  font-size: 25px;
 }
 #util-nav > div{
   padding: 20px;
 }
 #util-nav  div,
 #util-nav > div > span {
-  color: white;
-  text-shadow: 2px 2px 0px black;
+  color: black;
+  text-shadow: 2px 2px 0px white;
 }
 #main{
   /* width: 1000px;
@@ -59,11 +59,12 @@ body{
   flex-direction: column;
 }
 
-/* #canvas {
-  width: 1000px;
-  height: 800px;
-  
-} */
+#canvas {
+  border: 20px solid rgba(255,255, 255, .5);
+  border-right: 20px solid grey;
+  border-bottom: 20px solid grey;
+  border-radius: 20px;
+}
 #healthBar{
   margin-left: 10px;
   opacity: 0.7;
@@ -103,6 +104,19 @@ input#name::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
   cursor: pointer
 }
 
+
 #lives img{
-  width: 30px;
+  width: 25px;
+  margin-right: 10px;
+}
+
+#playAgain{
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translateX(-50%);
+color: white;
+background-color: black;
+padding: 10px;
+cursor:pointer;
 }
