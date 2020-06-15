@@ -33,7 +33,7 @@ class Fligth {
 
 
     this.audioShot = new Audio ('sounds/Gunshot2.mp3')
-    this.audio = new Audio ('sounds/airplane+seaplane.mp3')
+    this.audio = new Audio ('sounds/airplane-seaplane.mp3')
     this.audio.loop = true;
     this.audio.play()
   }
